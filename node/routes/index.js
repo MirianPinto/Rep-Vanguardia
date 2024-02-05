@@ -7,21 +7,23 @@ var axios = require("axios");
 router.get('/', async (req, res, next) =>{
 
 
-  try {
-    const options = {
-        method: 'GET', 
-        url: `https://jsonplaceholder.typicode.com/users`
-    };
+  // try {
+  //   const options = {
+  //       method: 'GET', 
+  //       url: `https://jsonplaceholder.typicode.com/users`
+  //   };
 
-    var response = await axios.request(options);
-    res.render('index', { title: response.data[1].name });
-  } catch (e) {
-      console.error("Error al obtener acciones:", e);
+  //   var response = await axios.request(options);
+  //   res.render('index', { title: response.data[1].name });
+  // } catch (e) {
+  //     console.error("Error al obtener acciones:", e);
       
-    res.render('index', { title: "NOU" });
-  }  
-  
+  //   res.render('index', { title: "NOU" });
+  // }  
+  res.send(`Hello ${process.env.WEATHER_API}`)
   
 });
+
+
 
 module.exports = router;
