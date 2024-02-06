@@ -10,8 +10,33 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-mongoose.connect('mongodb+srv://cluster0.xvygl4d.mongodb.net/')
-  .then(() => console.log('Connected!'));
+mongoose.connect('mongodb+srv://cluster0.xvygl4d.mongodb.net/Vanguardia')
+  .then(() =>
+   {
+    console.log("Conectado!");
+    const Schema = mongoose.Schema;
+    
+    // const LibreriaSchema = new Schema({
+    //   id: { type: Number, required: true, unique: true },
+    //   nombre:  { type: String, required: true },
+    //   author:  { type: String , required: true},
+    //   num_pag: { type: Number, required: true},
+    //   fecha_publi: { type: Date , required: true},
+    //   editorial: { type: String, required: true },
+    //   ISBN:{ type: Number, required: true},
+    //   genero:{ type: String , required: true},
+    //   comentarios:{ type: String, required: true },
+    //   edicion: { type: String , required: true},
+    // });
+
+    // const Libro = mongoose.model('Libros', LibreriaSchema);
+   
+   
+   }
+   
+
+   
+  );
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
