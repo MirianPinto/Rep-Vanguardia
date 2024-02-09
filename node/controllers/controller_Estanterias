@@ -1,0 +1,91 @@
+var express = require("express");
+
+const mongoose = require("mongoose");
+const models = require("../models/models");
+
+const C_Estanteria = async (req, res) => {
+  console.log(req.body);
+  
+  const {  id, genero } = req.body;
+  const Estanteria = new models.LibreriaEstanteria({
+    id: id,
+    libros: 0 ,
+    genero: genero
+  });
+
+  try {
+    const Estanterianew = await Estanteria.save().then(() => console.log("Estanteria creada:"));
+    res.send(Estanterianew)
+  } catch (e) {
+    console.log(e);
+    res.send("ocurrio error" + e)
+  }
+};
+
+const D_Estanteria = async (req, res) => {
+  console.log(req.body);
+  
+  const { idEstanteria } = req.body;
+ 
+
+  try {
+    const Estanteriadel = await models.LibreriaEstanteria.findOneAndDelete({ id: idEstanteria }).then(() => console.log("meow"));
+    res.send(Estanteriadel)
+  } catch (e) {
+    console.log(e);
+    res.send("ocurrio error" + e)
+  }
+};
+
+const Up_Estanteria = async (req, res) => {
+  console.log(req.body);
+  
+  const { idEstanteria, campo, dato} = req.body;
+  try {
+    var Estanteria; 
+    switch(campo)
+    {
+      case "genero":
+        Estanteria = await models.LibreriaEstanteria.updateOne({ id: idEstanteria }, { genero: dato });
+        break;
+      break;
+    }
+    
+    
+    res.send(libronew)
+  } catch (e) {
+    console.log(e);
+    res.send("ocurrio error" + e)
+  }
+};
+
+const R_Estanteria = async (req, res) => {
+  const { idEstanteria } = req.body;
+
+  
+
+  try {
+
+    var EstanteriaFind;
+    if(idEstanteria ==  0)
+    {
+      EstanteriaFind = await models.LibreriaEstanteria.findOne({ id: idEstanteria }).exec();
+      res.send(EstanteriaFind)
+    }else
+    {
+      EstanteriaFind = await models.LibreriaEstanteria.find({}).exec();
+      res.send(EstanteriaFind)
+    }
+    
+  } catch (e) {
+    console.log(e);
+    res.send("ocurrio error" + e)
+  }
+};
+
+module.exports = {
+    C_Estanteria,
+    D_Estanteria,
+    Up_Estanteria,
+    R_Estanteria
+};
